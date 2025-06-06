@@ -1,0 +1,54 @@
+// .vscode/tasks.json
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CMake: Configure and Build",
+            "type": "shell",
+            "command": [
+                "mkdir -p ${workspaceFolder}/build && cd ${workspaceFolder}/build && cmake .. && cmake --build ."
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Remove Build Directory - Mac ONLY",
+            "type": "shell",
+            "command": "rm -rf ${workspaceFolder}/build",
+            "group": "none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Remove Build Directory - WINDOWS ONLY",
+            "type": "shell",
+            "command": "rmdir /s /q ${workspaceFolder}\\build",
+            "group": "none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Run Executable",
+            "type": "shell",
+            "command": "${workspaceFolder}/build/bin/the-bartender", // Adjust path for Windows: ${workspaceFolder}/build/bin/the-bartender.exe
+            "group": "test", // Or any other suitable group
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        }
+    ]
+}
