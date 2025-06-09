@@ -49,7 +49,6 @@ int main(void)
     const int screenHeight = 450;
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - automation events");
-
     // Define player
     Player player = {0};
     player.position = (Vector2){400, 280};
