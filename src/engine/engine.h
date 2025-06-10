@@ -14,6 +14,7 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
+#include "definitions.h"
 #include <iostream>
 #include "raylib.h"
 #include <cstdint>
@@ -24,6 +25,7 @@ private:
     //------------------------------------------------------------------------------------
     // Private members
     //------------------------------------------------------------------------------------
+    float desiredFPS = 60.00f; // Desired frames per second
 public:
     //------------------------------------------------------------------------------------
     // Private  methods

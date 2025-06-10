@@ -13,4 +13,7 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 
+#define MIN_FPS 30.00f  // Minimum frames per second
+#define MAX_FPS 240.00f // Maximum frames per second
+
 #endif // DEFINITIONS_H

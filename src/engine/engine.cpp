@@ -11,6 +11,9 @@
  ********************************************************************************************/
 
 #include "engine.h"
+#define RAYGUI_IMPLEMENTATION
+#include "../../external/raygui/raygui.h"
+
 Engine::Engine()
 {
     //------------------------------------------------------------------------------------
@@ -29,8 +32,9 @@ Engine::~Engine()
 
 void Engine::initGame(const int16_t &width, const int16_t &height, const char *title)
 {
+
     InitWindow(width, height, title);
-    SetTargetFPS(60); // Set the game to run at 60 frames per second
+    SetTargetFPS(static_cast<int>(desiredFPS)); // Set the game to run at 60 frames per second
 
     while (!WindowShouldClose()) // Main game loop
     {
@@ -39,6 +43,10 @@ void Engine::initGame(const int16_t &width, const int16_t &height, const char *t
         BeginDrawing();
         ClearBackground(RAYWHITE);
         DrawText("Welcome to The Bartender!", 190, 200, 20, LIGHTGRAY);
+
+        GuiSliderBar((Rectangle){600, 40, 120, 20}, "FPS", TextFormat("%.2f", desiredFPS), &desiredFPS, MIN_FPS, MAX_FPS); // Slider for FPS control
+        SetTargetFPS(static_cast<int>(desiredFPS));                                                                        // Update the target FPS based on the slider value
+        DrawFPS(10, 10);                                                                                                   // Draw the FPS counter in the top-left corner
         EndDrawing();
     }
 
