@@ -35,7 +35,7 @@ void Engine::initGame(const int16_t &width, const int16_t &height, const char *t
     SetTargetFPS(static_cast<int>(desiredFPS)); // Set the game to run at 60 frames per second
 
     bool fpsEditMode = false; // Flag to check if FPS edit mode is active
-    int editFPS = 1;          // Variable to hold the FPS value for editing
+    int editFPS = 1;          // Variable to hold the FPS value for editing, will be 60 by default
 
     while (!WindowShouldClose()) // Main game loop
     {
@@ -47,31 +47,9 @@ void Engine::initGame(const int16_t &width, const int16_t &height, const char *t
 
         if (GuiDropdownBox((Rectangle){10, 30, 120, 20}, "30;60;120;144;240", &editFPS, fpsEditMode))
         {
-            fpsEditMode = !fpsEditMode; // Dropdown for FPS selection
+            SetTargetFPS(static_cast<int>(newDesiredFPS(editFPS))); // Update the target FPS based on the dropdown selection
+            fpsEditMode = !fpsEditMode;                             // Dropdown for FPS selection
         }
-        std::cout << "FPS EDIT MODE: " << editFPS << std::endl;
-        switch (editFPS)
-        {
-        case 0: // 30 FPS
-            desiredFPS = GameFPS::FPS_30;
-            break;
-        case 1: // 60 FPS
-            desiredFPS = GameFPS::FPS_60;
-            break;
-        case 2: // 120 FPS
-            desiredFPS = GameFPS::FPS_120;
-            break;
-        case 3: // 144 FPS
-            desiredFPS = GameFPS::FPS_144;
-            break;
-        case 4: // 240 FPS
-            desiredFPS = GameFPS::FPS_240;
-            break;
-        default:
-            desiredFPS = GameFPS::DEFAULT; // Default to 60 FPS if no valid selection
-        }
-
-        SetTargetFPS(static_cast<int>(desiredFPS)); // Update the target FPS based on the slider value
 
         DrawFPS(10, 10); // Draw the FPS counter in the top-left corner
         EndDrawing();
@@ -79,3 +57,28 @@ void Engine::initGame(const int16_t &width, const int16_t &height, const char *t
 
     CloseWindow(); // Close the window and clean up resources
 } // Engine::initGame()
+
+GameFPS Engine::newDesiredFPS(const int &newFPS)
+{
+    switch (newFPS)
+    {
+    case 0:
+        desiredFPS = GameFPS::FPS_30;
+        break;
+    case 1:
+        desiredFPS = GameFPS::FPS_60;
+        break;
+    case 2:
+        desiredFPS = GameFPS::FPS_120;
+        break;
+    case 3:
+        desiredFPS = GameFPS::FPS_144;
+        break;
+    case 4:
+        desiredFPS = GameFPS::FPS_240;
+        break;
+    default:
+        desiredFPS = GameFPS::DEFAULT; // Default to 60 FPS if no valid selection
+    }
+    return desiredFPS; // Return the updated desired FPS
+} // Engine::newDesiredFPS()
