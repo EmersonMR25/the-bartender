@@ -18,6 +18,23 @@
 #include <iostream>
 #include "raylib.h"
 #include <cstdint>
+#include "../../external/raygui/raygui.h"
+
+//------------------------------------------------------------------------------------
+// ENUM class for GameFPS in setting
+//------------------------------------------------------------------------------------
+enum class GameFPS : int
+{
+    //------------------------------------------------------------------------------------
+    // OPTIONS for GameFPS
+    //------------------------------------------------------------------------------------
+    DEFAULT = 60,  // Default frames per second
+    FPS_30 = 30,   // 30 frames per second
+    FPS_60 = 60,   // 60 frames per second
+    FPS_120 = 120, // 120 frames per second
+    FPS_144 = 144, // 144 frames per second
+    FPS_240 = 240  // 240 frames per second
+};
 
 class Engine
 {
@@ -25,9 +42,9 @@ private:
     //------------------------------------------------------------------------------------
     // Private members
     //------------------------------------------------------------------------------------
-    float desiredFPS = 60.00f; // Desired frames per second
+    GameFPS desiredFPS = GameFPS::DEFAULT; // Desired frames per second
 public:
-    //------------------------------------------------------------------------------------
+    //-----------float-------------------------------------------------------------------------
     // Private  methods
     //------------------------------------------------------------------------------------
     void initGame(const int16_t &width, const int16_t &height, const char *title);

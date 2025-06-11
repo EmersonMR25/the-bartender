@@ -8,6 +8,8 @@
  ********************************************************************************************/
 
 #include "engine/engine.h"
+#define RAYGUI_IMPLEMENTATION
+#include "../external/raygui/raygui.h"
 
 int main(void)
 {

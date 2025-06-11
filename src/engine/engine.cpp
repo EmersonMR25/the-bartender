@@ -11,8 +11,6 @@
  ********************************************************************************************/
 
 #include "engine.h"
-#define RAYGUI_IMPLEMENTATION
-#include "../../external/raygui/raygui.h"
 
 Engine::Engine()
 {
@@ -36,6 +34,9 @@ void Engine::initGame(const int16_t &width, const int16_t &height, const char *t
     InitWindow(width, height, title);
     SetTargetFPS(static_cast<int>(desiredFPS)); // Set the game to run at 60 frames per second
 
+    bool fpsEditMode = false; // Flag to check if FPS edit mode is active
+    int editFPS = 1;          // Variable to hold the FPS value for editing
+
     while (!WindowShouldClose()) // Main game loop
     {
         // Update and draw the game here
@@ -44,9 +45,35 @@ void Engine::initGame(const int16_t &width, const int16_t &height, const char *t
         ClearBackground(RAYWHITE);
         DrawText("Welcome to The Bartender!", 190, 200, 20, LIGHTGRAY);
 
-        GuiSliderBar((Rectangle){600, 40, 120, 20}, "FPS", TextFormat("%.2f", desiredFPS), &desiredFPS, MIN_FPS, MAX_FPS); // Slider for FPS control
-        SetTargetFPS(static_cast<int>(desiredFPS));                                                                        // Update the target FPS based on the slider value
-        DrawFPS(10, 10);                                                                                                   // Draw the FPS counter in the top-left corner
+        if (GuiDropdownBox((Rectangle){10, 30, 120, 20}, "30;60;120;144;240", &editFPS, fpsEditMode))
+        {
+            fpsEditMode = !fpsEditMode; // Dropdown for FPS selection
+        }
+        std::cout << "FPS EDIT MODE: " << editFPS << std::endl;
+        switch (editFPS)
+        {
+        case 0: // 30 FPS
+            desiredFPS = GameFPS::FPS_30;
+            break;
+        case 1: // 60 FPS
+            desiredFPS = GameFPS::FPS_60;
+            break;
+        case 2: // 120 FPS
+            desiredFPS = GameFPS::FPS_120;
+            break;
+        case 3: // 144 FPS
+            desiredFPS = GameFPS::FPS_144;
+            break;
+        case 4: // 240 FPS
+            desiredFPS = GameFPS::FPS_240;
+            break;
+        default:
+            desiredFPS = GameFPS::DEFAULT; // Default to 60 FPS if no valid selection
+        }
+
+        SetTargetFPS(static_cast<int>(desiredFPS)); // Update the target FPS based on the slider value
+
+        DrawFPS(10, 10); // Draw the FPS counter in the top-left corner
         EndDrawing();
     }
 
