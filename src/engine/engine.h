@@ -47,8 +47,9 @@ public:
     //-----------float-------------------------------------------------------------------------
     // Private  methods
     //------------------------------------------------------------------------------------
-    void initGame(const int16_t &width, const int16_t &height, const char *title);
+    void initGame(const std::int16_t &width, const std::int16_t &height, const char *title);
     GameFPS newDesiredFPS(const int &newFPS);
+    void newDesiredResolution(const int &editResolution);
 
 public:
     //------------------------------------------------------------------------------------
