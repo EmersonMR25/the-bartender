@@ -5,7 +5,7 @@
  * @version 1.0.0
  * @LastModified 06/10/2025
  *
- * Thid gilr will take care of the engine's core functionalities.
+ * This will take care of the engine's core functionalities.
  * DRAW, UPDATE, RENDER, INPUT, and more.
  *
  ********************************************************************************************/
