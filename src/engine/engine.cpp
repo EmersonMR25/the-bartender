@@ -30,9 +30,14 @@ Engine::~Engine()
 
 void Engine::initGame(const std::int16_t &width, const std::int16_t &height, const char *title)
 {
-    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+
     InitWindow(width, height, title);
     SetTargetFPS(static_cast<int>(desiredFPS)); // Set the game to run at 60 frames per second
+
+    //------------------------------------------------------------------------------------
+    // Initialize the game camera
+    //------------------------------------------------------------------------------------
+    Camera2D camera = {0};
 
     bool fpsEditMode = false;        // Flag to check if FPS edit mode is active
     int editFPS = 1;                 // Variable to hold the FPS value for editing, will be 60 by default
@@ -41,8 +46,17 @@ void Engine::initGame(const std::int16_t &width, const std::int16_t &height, con
 
     while (!WindowShouldClose()) // Main game loop
     {
-        // Update and draw the game here
-        // This is where the game logic will be implemented
+        //------------------------------------------------------------------------------------
+        // Handle events and input before drawing
+        //------------------------------------------------------------------------------------
+        handleEvents();
+        //------------------------------------------------------------------------------------
+        // Update all entities and game logic here
+        //------------------------------------------------------------------------------------
+
+        //------------------------------------------------------------------------------------
+        // Draw the game UI and elements
+        //------------------------------------------------------------------------------------
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
@@ -116,4 +130,8 @@ void Engine::newDesiredResolution(const int &editResolution)
         SetWindowSize(3840, 2160);
         break;
     }
-}
+} // Engine::newDesiredResolution()
+
+void Engine::handleEvents()
+{
+} // Engine::handleEvents()

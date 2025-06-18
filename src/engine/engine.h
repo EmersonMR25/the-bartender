@@ -43,13 +43,14 @@ private:
     // Private members
     //------------------------------------------------------------------------------------
     GameFPS desiredFPS = GameFPS::DEFAULT; // Desired frames per second
-public:
+private:
     //-----------float-------------------------------------------------------------------------
     // Private  methods
     //------------------------------------------------------------------------------------
     void initGame(const std::int16_t &width, const std::int16_t &height, const char *title);
     GameFPS newDesiredFPS(const int &newFPS);
     void newDesiredResolution(const int &editResolution);
+    void handleEvents();
 
 public:
     //------------------------------------------------------------------------------------
