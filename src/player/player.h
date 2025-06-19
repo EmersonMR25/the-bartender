@@ -4,7 +4,6 @@
  *
  * @author AbdielDev
  * @version 1.0.0
- * @LastModified 06/18/2025
  *
  * This file contains the Player class, which represents a player in the game.
  * It includes methods for player movement, interaction, and other player-related functionalities.

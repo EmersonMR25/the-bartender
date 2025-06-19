@@ -3,7 +3,6 @@
  *
  * @author AbdielDev
  * @version 1.0.0
- * @LastModified 06/10/2025
  *
  * This will take care of the engine's core functionalities.
  * DRAW, UPDATE, RENDER, INPUT, and more.
@@ -14,11 +13,7 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
-#include "definitions.h"
-#include <iostream>
-#include "raylib.h"
 #include <cstdint>
-#include "../../external/raygui/raygui.h"
 
 //------------------------------------------------------------------------------------
 // ENUM class for GameFPS in setting
@@ -47,7 +42,7 @@ private:
     //-----------float-------------------------------------------------------------------------
     // Private  methods
     //------------------------------------------------------------------------------------
-    void initGame(const std::int16_t &width, const std::int16_t &height, const char *title);
+    void initGame(const int16_t &width, const int16_t &height, const char *title);
     GameFPS newDesiredFPS(const int &newFPS);
     void newDesiredResolution(const int &editResolution);
     void handleEvents();

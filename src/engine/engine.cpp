@@ -3,7 +3,6 @@
  *
  * @author AbdielDev
  * @version 1.0.0
- * @LastModified 06/10/2025
  *
  * Thid gilr will take care of the engine's core functionalities.
  * DRAW, UPDATE, RENDER, INPUT, and more.
@@ -11,6 +10,10 @@
  ********************************************************************************************/
 
 #include "engine.h"
+#include "definitions.h"
+#include <iostream>
+#include "raygui.h"
+#include "raylib.h"
 
 Engine::Engine()
 {
@@ -28,7 +31,7 @@ Engine::~Engine()
     // do nothing yet
 }
 
-void Engine::initGame(const std::int16_t &width, const std::int16_t &height, const char *title)
+void Engine::initGame(const int16_t &width, const int16_t &height, const char *title)
 {
 
     InitWindow(width, height, title);

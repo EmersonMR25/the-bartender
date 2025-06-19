@@ -3,13 +3,12 @@
  *
  * @author AbdielDev
  * @version 1.0.0
- * @LastModified 06/10/2025
  *
  ********************************************************************************************/
 
 #include "engine/engine.h"
 #define RAYGUI_IMPLEMENTATION
-#include "../external/raygui/raygui.h"
+#include "raygui.h"
 
 int main(void)
 {
