@@ -11,6 +11,7 @@
 
 #include "engine.h"
 #include "definitions.h"
+#include "../player/player.h"
 #include <iostream>
 #include "raygui.h"
 #include "raylib.h"
@@ -27,8 +28,9 @@ Engine::Engine()
 
 Engine::~Engine()
 {
-    // Destructor implementation
-    // do nothing yet
+
+    delete player; // Clean up the player object if it exists
+    player = nullptr;
 }
 
 void Engine::initGame(const int16_t &width, const int16_t &height, const char *title)
@@ -42,13 +44,16 @@ void Engine::initGame(const int16_t &width, const int16_t &height, const char *t
     //------------------------------------------------------------------------------------
     Camera2D camera = {0};
 
-    bool fpsEditMode = false;        // Flag to check if FPS edit mode is active
-    int editFPS = 1;                 // Variable to hold the FPS value for editing, will be 60 by default
-    bool resolutionEditMode = false; // Flag to check if resolution edit mode is active
-    int editResolution = 0;          // Variable to hold the resolution value for editing
-
     while (!WindowShouldClose()) // Main game loop
     {
+        //------------------------------------------------------------------------------------
+        // Initialize the player object if it hasn't been created yet
+        //------------------------------------------------------------------------------------
+        if (player == nullptr)
+        {
+            player = new Player(0.0f, 0.0f, 5.0f);
+        }
+
         //------------------------------------------------------------------------------------
         // Handle events and input before drawing
         //------------------------------------------------------------------------------------
@@ -56,27 +61,11 @@ void Engine::initGame(const int16_t &width, const int16_t &height, const char *t
         //------------------------------------------------------------------------------------
         // Update all entities and game logic here
         //------------------------------------------------------------------------------------
-
+        update();
         //------------------------------------------------------------------------------------
         // Draw the game UI and elements
         //------------------------------------------------------------------------------------
-        BeginDrawing();
-        ClearBackground(RAYWHITE);
-
-        if (GuiDropdownBox((Rectangle){10, 30, 120, 20}, "30;60;120;144;240", &editFPS, fpsEditMode))
-        {
-            SetTargetFPS(static_cast<int>(newDesiredFPS(editFPS))); // Update the target FPS based on the dropdown selection
-            fpsEditMode = !fpsEditMode;
-        }
-
-        if (GuiDropdownBox((Rectangle){10, 60, 120, 20}, "640x480;800x600;1024x768;1280x720;1920x1080;2560x1440;3840x2160", &editResolution, resolutionEditMode))
-        {
-            newDesiredResolution(editResolution);
-            resolutionEditMode = !resolutionEditMode;
-        }
-
-        DrawFPS(10, 10); // Draw the FPS counter in the top-left corner
-        EndDrawing();
+        render();
     }
 
     CloseWindow(); // Close the window and clean up resources
@@ -138,3 +127,47 @@ void Engine::newDesiredResolution(const int &editResolution)
 void Engine::handleEvents()
 {
 } // Engine::handleEvents()
+
+void Engine::update()
+{
+    // TO DO
+} // Engine::update()
+
+void Engine::render()
+{
+    //------------------------------------------------------------------------------------
+    // Variables for FPS and resolution editing. This will be helpful for debugging and testing
+    //------------------------------------------------------------------------------------
+    bool fpsEditMode = false;        // Flag to check if FPS edit mode is active
+    int editFPS = 1;                 // Variable to hold the FPS value for editing, will be 60 by default
+    bool resolutionEditMode = false; // Flag to check if resolution edit mode is active
+    int editResolution = 0;          // Variable to hold the resolution value for editing
+    //------------------------------------------------------------------------------------
+    // Render the player and other game elements
+    //------------------------------------------------------------------------------------
+    BeginDrawing();
+    ClearBackground(RAYWHITE);
+
+    if (GuiDropdownBox((Rectangle){10, 30, 120, 20}, "30;60;120;144;240", &editFPS, fpsEditMode))
+    {
+        SetTargetFPS(static_cast<int>(newDesiredFPS(editFPS))); // Update the target FPS based on the dropdown selection
+        fpsEditMode = !fpsEditMode;
+    }
+
+    if (GuiDropdownBox((Rectangle){10, 60, 120, 20}, "640x480;800x600;1024x768;1280x720;1920x1080;2560x1440;3840x2160", &editResolution, resolutionEditMode))
+    {
+        newDesiredResolution(editResolution);
+        resolutionEditMode = !resolutionEditMode;
+    }
+
+    //------------------------------------------------------------------------------------
+    // Render the player object. Check if the player pointer is not null before rendering.
+    //------------------------------------------------------------------------------------
+    if (player)
+    {
+        player->render();
+    }
+
+    DrawFPS(10, 10); // Draw the FPS counter in the top-left corner
+    EndDrawing();
+} // Engine::render()

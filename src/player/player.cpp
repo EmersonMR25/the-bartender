@@ -1,4 +1,5 @@
 #include "player.h"
+#include "raylib.h"
 #include <iostream>
 
 Player::Player(const float &startX, const float &startY, const float &playerSpeed)
@@ -19,7 +20,14 @@ void Player::update()
 
 void Player::render()
 {
-
+    //------------------------------------------------------------------------------------
+    // This function is the bread and butter of the player rendering
+    // It draws the player as a rectangle on the screen at the current position
+    //
+    // TO DO: Add a player sprite or texture instead of a rectangle
+    //        Add an anumation for the player movement
+    //------------------------------------------------------------------------------------
+    DrawRectangle(static_cast<int>(positionX), static_cast<int>(positionY), 50, 50, BLUE);
 } // Player::render()
 
 float Player::getPositionX() const

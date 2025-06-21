@@ -21,11 +21,11 @@ private:
     //------------------------------------------------------------------------------------
     // Private members
     //------------------------------------------------------------------------------------
-    float positionX = 0.00f;     // Player's X position
-    float positionY = 0.00f;     // Player's Y position
-    float speed = 0.00f;         // Player's movement speed
-    bool isMoving = false;       // Flag to check if the player is moving
-    std::string playerName = ""; // Player's name
+    float positionX = 0.00f;         // Player's X position
+    float positionY = 0.00f;         // Player's Y position
+    float speed = 0.00f;             // Player's movement speed
+    bool isMoving = false;           // Flag to check if the player is moving
+    std::string playerName = "Kuro"; // Player's name
 private:
     //------------------------------------------------------------------------------------
     // Private methods

@@ -43,6 +43,7 @@ private:
     // Private members
     //------------------------------------------------------------------------------------
     GameFPS desiredFPS = GameFPS::DEFAULT; // Desired frames per second
+    Player *player = nullptr;              // Pointer to the Player object
 private:
     //-----------float-------------------------------------------------------------------------
     // Private  methods
@@ -51,6 +52,8 @@ private:
     GameFPS newDesiredFPS(const int &newFPS);
     void newDesiredResolution(const int &editResolution);
     void handleEvents();
+    void update();
+    void render();
 
 public:
     //------------------------------------------------------------------------------------
