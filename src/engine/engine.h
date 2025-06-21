@@ -31,6 +31,11 @@ enum class GameFPS : int
     FPS_240 = 240  // 240 frames per second
 };
 
+//------------------------------------------------------------------------------------
+// Forward declaration of necessary classes
+//------------------------------------------------------------------------------------
+class Player; // Forward declaration of Player class.
+
 class Engine
 {
 private:

@@ -7,7 +7,7 @@
  ********************************************************************************************/
 
 #include "engine/engine.h"
-#define RAYGUI_IMPLEMENTATION
+#define RAYGUI_IMPLEMENTATION // As per raygui documentation, define this before including raygui.h
 #include "raygui.h"
 
 int main(void)
