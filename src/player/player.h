@@ -26,6 +26,7 @@ private:
     float speed = 0.00f;             // Player's movement speed
     bool isMoving = false;           // Flag to check if the player is moving
     std::string playerName = "Kuro"; // Player's name
+
 private:
     //------------------------------------------------------------------------------------
     // Private methods

@@ -51,7 +51,7 @@ void Engine::initGame(const int16_t &width, const int16_t &height, const char *t
         //------------------------------------------------------------------------------------
         if (player == nullptr)
         {
-            player = new Player(0.0f, 0.0f, 5.0f);
+            player = new Player(500.0f, 500.0f, 5.0f);
         }
 
         //------------------------------------------------------------------------------------
@@ -136,28 +136,21 @@ void Engine::update()
 void Engine::render()
 {
     //------------------------------------------------------------------------------------
-    // Variables for FPS and resolution editing. This will be helpful for debugging and testing
-    //------------------------------------------------------------------------------------
-    bool fpsEditMode = false;        // Flag to check if FPS edit mode is active
-    int editFPS = 1;                 // Variable to hold the FPS value for editing, will be 60 by default
-    bool resolutionEditMode = false; // Flag to check if resolution edit mode is active
-    int editResolution = 0;          // Variable to hold the resolution value for editing
-    //------------------------------------------------------------------------------------
     // Render the player and other game elements
     //------------------------------------------------------------------------------------
     BeginDrawing();
     ClearBackground(RAYWHITE);
 
-    if (GuiDropdownBox((Rectangle){10, 30, 120, 20}, "30;60;120;144;240", &editFPS, fpsEditMode))
-    {
-        SetTargetFPS(static_cast<int>(newDesiredFPS(editFPS))); // Update the target FPS based on the dropdown selection
-        fpsEditMode = !fpsEditMode;
-    }
-
     if (GuiDropdownBox((Rectangle){10, 60, 120, 20}, "640x480;800x600;1024x768;1280x720;1920x1080;2560x1440;3840x2160", &editResolution, resolutionEditMode))
     {
         newDesiredResolution(editResolution);
         resolutionEditMode = !resolutionEditMode;
+    }
+
+    if (GuiDropdownBox((Rectangle){10, 30, 120, 20}, "30;60;120;144;240", &editFPS, fpsEditMode))
+    {
+        SetTargetFPS(static_cast<int>(newDesiredFPS(editFPS))); // Update the target FPS based on the dropdown selection
+        fpsEditMode = !fpsEditMode;
     }
 
     //------------------------------------------------------------------------------------

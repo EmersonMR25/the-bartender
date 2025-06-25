@@ -44,6 +44,14 @@ private:
     //------------------------------------------------------------------------------------
     GameFPS desiredFPS = GameFPS::DEFAULT; // Desired frames per second
     Player *player = nullptr;              // Pointer to the Player object
+
+    //------------------------------------------------------------------------------------
+    // Persistant members for changing res and fps
+    //------------------------------------------------------------------------------------
+    bool fpsEditMode = false;        // Flag to check if FPS edit mode is active
+    int editFPS = 1;                 // Variable to hold the FPS value for editing, will be 60 by default
+    bool resolutionEditMode = false; // Flag to check if resolution edit mode is active
+    int editResolution = 0;          // Variable to hold the resolution value for editing
 private:
     //-----------float-------------------------------------------------------------------------
     // Private  methods
